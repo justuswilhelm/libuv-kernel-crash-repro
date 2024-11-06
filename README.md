@@ -7,12 +7,23 @@ Keywords:
 - Linux LTS 6.6
 - NixOS
 
-
 References:
 
 - https://github.com/nodejs/node/issues/55587
 - https://github.com/libuv/libuv/issues/4598
 - https://lore.kernel.org/io-uring/3d913aef-8c44-4f50-9bdf-7d9051b08941@app.fastmail.com/T/#mcddcf299eb2ec40aca4bf8b938067b9682c8eb27
+
+# Screenshots
+
+First some screenshots to make clear what I see on my system when a crash occurs:
+
+![NPM killed after timing out](./npm-ci-killed.png)
+
+![Console showing blocked task kernel INFO](./blocking-task.png)
+
+![Detailed `dmesg` output](./dmesg-output.png)
+
+![System refuses to power off](./power-off-fail.png)
 
 # Requirements
 
