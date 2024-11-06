@@ -137,19 +137,19 @@ Here's the stack trace:
 Trace libuv calls:
 
 ```bash
-# Trace just libuv.so.1 calls
-ltrace -t --library libuv.so.1 --output ltrace.log node $(which npm) ci
+# Trace just calls to libuv.so.1
+ltrace -t -f --library libuv.so.1 --output ltrace.log node $(which npm) ci
 # Trace system calls as well
-ltrace -t -S --library libuv.so.1 --output ltrace_sys.log node $(which npm) ci
-# Trace libuv.so.1 calls with backtrace (this is really slow)
-ltrace -t --where=3 --library libuv.so.1 --output ltrace_btw.log node $(which npm) ci
+ltrace -t -f -S --library libuv.so.1 --output ltrace_sys.log node $(which npm) ci
+# Trace calls within libuv.so.1 to uv__iou functions with backtrace
+ltrace -t -f -L -w3 -x 'uv__iou*@libuv.so.1' --output ltrace_uv.log node $(which npm) ci
 ```
 
 This repo contains the following files:
 
 - `ltrace.log` has the results of the first command with the process getting stuck
-- `ltrace_sys.log` has the results of the second command above with the process getting stuck
-and terminated using `kill -9 $(pidof "npm ci")`.
+- `ltrace_sys.log.tar.gz` has the results of the second command above with the process getting stuck and terminated using `kill -9 $(pidof "npm ci")`.  File is tar/gzipped
+- `ltrace_uv.log` has a trace of calls to `uv__iou*` functions within libuv
 
 ## Copy files
 
