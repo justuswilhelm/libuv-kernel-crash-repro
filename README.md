@@ -25,41 +25,6 @@ First some screenshots to make clear what I see on my system when a crash occurs
 
 ![System refuses to power off](./power-off-fail.png)
 
-## Debug symbols
-
-It's possible to reproduce the bug inside gdb when running:
-
-```bash
-gdb --args node $(which npm) ci
-```
-
-![Nodejs will spend most its time in uv.io_poll](./stuck-in-uv-io-poll.png)
-
-![After continuing and interrupting, we are still inside uv.io_poll](./still-in-uv-io-poll.png)
-
-Here's the stack trace:
-
-```
-0x00007ffff51fb086 in epoll_pwait ()
-   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
-(gdb) where
-#0  0x00007ffff51fb086 in epoll_pwait ()
-   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
-#1  0x00007ffff7f92140 in uv.io_poll ()
-   from /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1
-#2  0x00007ffff7f7f910 in uv_run ()
-   from /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1
-#3  0x0000000000d5dfdb in node::SpinEventLoopInternal(node::Environment*) ()
-#4  0x0000000000ecf51b in node::NodeMainInstance::Run(node::ExitCode*, node::Environment*) ()
-#5  0x0000000000ecf8fa in node::NodeMainInstance::Run() ()
-#6  0x0000000000e22d7c in node::Start(int, char**) ()
-#7  0x00007ffff511b10e in __libc_start_call_main ()
-   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
-#8  0x00007ffff511b1c9 in __libc_start_main_impl ()
-   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
-#9  0x0000000000d5bd95 in _start ()
-```
-
 # Requirements
 
 - [Nix](https://nixos.org/download/#download-nix)
@@ -67,6 +32,23 @@ Here's the stack trace:
 - x86_64 host that can run QEMU/KVM images
 
 # How to reproduce
+
+## Using the QEMU serial console
+
+QEMU will launch in serial console mode. Using a serial console makes it easier
+to copy text between different programs. You can disable the serial console by
+removing the following line in `configuration.nix`:
+
+```patch
+ virtualisation.cores = 2;
+-virtualisation.graphics = false;
+ # No need to allocate disk space
+ virtualisation.diskImage = null;
+```
+
+__Important__: You can exit the serial console by pressing `Ctrl-a + c` and
+then typing `quit` and pressing the `Enter/Return` key. If your terminal is
+messed up after the QEMU serial console session, run `reset`. You can
 
 1. Start QEMU VM using the following command:
 
@@ -112,3 +94,48 @@ INFO: task iou-sqp-1031:1039 blocked for more than 122 seconds.
 
 9. Try turning the machine off with `poweroff`. The systemd shutdown target
    will fail at terminating the root user's processes.
+
+# Debugging and tracing
+
+## Gdb
+
+It's possible to reproduce the bug inside gdb when running:
+
+```bash
+gdb --args node $(which npm) ci
+```
+
+![Nodejs will spend most its time in uv.io_poll](./stuck-in-uv-io-poll.png)
+
+![After continuing and interrupting, we are still inside uv.io_poll](./still-in-uv-io-poll.png)
+
+Here's the stack trace:
+
+```
+0x00007ffff51fb086 in epoll_pwait ()
+   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
+(gdb) where
+#0  0x00007ffff51fb086 in epoll_pwait ()
+   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
+#1  0x00007ffff7f92140 in uv.io_poll ()
+   from /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1
+#2  0x00007ffff7f7f910 in uv_run ()
+   from /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1
+#3  0x0000000000d5dfdb in node::SpinEventLoopInternal(node::Environment*) ()
+#4  0x0000000000ecf51b in node::NodeMainInstance::Run(node::ExitCode*, node::Environment*) ()
+#5  0x0000000000ecf8fa in node::NodeMainInstance::Run() ()
+#6  0x0000000000e22d7c in node::Start(int, char**) ()
+#7  0x00007ffff511b10e in __libc_start_call_main ()
+   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
+#8  0x00007ffff511b1c9 in __libc_start_main_impl ()
+   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
+#9  0x0000000000d5bd95 in _start ()
+```
+
+## Ltrace
+
+Trace libuv calls:
+
+```bash
+ltrace --library libuv.so.1 --output ltrace.log node $(which npm) ci
+```
