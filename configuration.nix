@@ -30,20 +30,16 @@ let
     '';
   };
   reproducer = pkgs.writeShellApplication {
+    name = "reproducer";
     text = ''
-      # Run a tmux reproducer env when we are either in
-      # First tty, or
-      # First serial console
-      if [ "$(tty)" = "/dev/tty1" -o "$(tty)" = "/dev/ttyS0" ]; then
-        tmux new-session -c "$HOME" -d -s npm-ci
-        tmux send-keys -t npm-ci "while true; do npm ci; done" C-m
+      tmux new-session -c "$HOME" -d -s npm-ci
+      tmux send-keys -t npm-ci "while true; do npm ci; done" C-m
 
-        tmux split-window -t npm-ci
-        tmux send-keys -t npm-ci "watch -d 'ps -p \$(pidof \"npm ci\") u'" C-m
-        tmux split-window -t npm-ci
-        tmux send-keys -t npm-ci "kill -9 \$(pidof \"npm ci\") # run when process crashes"
-        tmux attach-session -t npm-ci
-      fi
+      tmux split-window -t npm-ci
+      tmux send-keys -t npm-ci "watch -d 'ps -p \$(pidof \"npm ci\") u'" C-m
+      tmux split-window -t npm-ci
+      tmux send-keys -t npm-ci "kill -9 \$(pidof \"npm ci\") # run when process crashes"
+      tmux attach-session -t npm-ci
     '';
   };
 in
@@ -66,6 +62,7 @@ in
     # Environment
     pkgs.tmux
     fix-stty-size
+    reproducer
 
     # Also crashes with pkgs.nodejs_20
     pkgs.nodejs_22
@@ -80,7 +77,9 @@ in
   ];
   programs.bash.loginShellInit = ''
     cp /etc/crash/* $HOME
-    fix-stty-size
+    if [ "$(tty)" = "/dev/tty1" ] || [ "$(tty)" = "/dev/ttyS0" ]; then
+      fix-stty-size
+    fi
   '';
   users.motd = ''
     libuv uninterruptible process crash reproduction QEMU environment
