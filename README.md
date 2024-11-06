@@ -25,6 +25,41 @@ First some screenshots to make clear what I see on my system when a crash occurs
 
 ![System refuses to power off](./power-off-fail.png)
 
+## Debug symbols
+
+It's possible to reproduce the bug inside gdb when running:
+
+```bash
+gdb --args node $(which npm) ci
+```
+
+![Nodejs will spend most its time in uv.io_poll](./stuck-in-uv-io-poll.png)
+
+![After continuing and interrupting, we are still inside uv.io_poll](./still-in-uv-io-poll.png)
+
+Here's the stack trace:
+
+```
+0x00007ffff51fb086 in epoll_pwait ()
+   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
+(gdb) where
+#0  0x00007ffff51fb086 in epoll_pwait ()
+   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
+#1  0x00007ffff7f92140 in uv.io_poll ()
+   from /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1
+#2  0x00007ffff7f7f910 in uv_run ()
+   from /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1
+#3  0x0000000000d5dfdb in node::SpinEventLoopInternal(node::Environment*) ()
+#4  0x0000000000ecf51b in node::NodeMainInstance::Run(node::ExitCode*, node::Environment*) ()
+#5  0x0000000000ecf8fa in node::NodeMainInstance::Run() ()
+#6  0x0000000000e22d7c in node::Start(int, char**) ()
+#7  0x00007ffff511b10e in __libc_start_call_main ()
+   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
+#8  0x00007ffff511b1c9 in __libc_start_main_impl ()
+   from /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6
+#9  0x0000000000d5bd95 in _start ()
+```
+
 # Requirements
 
 - [Nix](https://nixos.org/download/#download-nix)

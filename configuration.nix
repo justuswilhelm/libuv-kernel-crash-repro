@@ -11,7 +11,12 @@
 
   environment.systemPackages = [
     pkgs.tmux
+    # Also crashes with pkgs.nodejs_20
     pkgs.nodejs_22
+    pkgs.libuv.debug
+    pkgs.strace
+    pkgs.ltrace
+    pkgs.gdb
   ];
   programs.bash.loginShellInit = ''
     cp -nv /etc/crash/* $HOME
