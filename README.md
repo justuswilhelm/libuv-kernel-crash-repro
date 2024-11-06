@@ -137,5 +137,28 @@ Here's the stack trace:
 Trace libuv calls:
 
 ```bash
-ltrace --library libuv.so.1 --output ltrace.log node $(which npm) ci
+# Trace just libuv.so.1 calls
+ltrace -t --library libuv.so.1 --output ltrace.log node $(which npm) ci
+# Trace system calls as well
+ltrace -t -S --library libuv.so.1 --output ltrace_sys.log node $(which npm) ci
+# Trace libuv.so.1 calls with backtrace (this is really slow)
+ltrace -t --where=3 --library libuv.so.1 --output ltrace_btw.log node $(which npm) ci
+```
+
+This repo contains the following files:
+
+- `ltrace.log` has the results of the first command with the process getting stuck
+- `ltrace_sys.log` has the results of the second command above with the process getting stuck
+and terminated using `kill -9 $(pidof "npm ci")`.
+
+## Copy files
+
+You can copy files between host and guest using `nc`. It's a bit hacky but
+it works:
+
+```bash
+# On host, choose a port and open your FW if needed
+nc -vlp 4444 > file_name.txt
+# On guest, determine host IP and use nc to write file
+nc -Nv $IP 4444 < file_name.txt
 ```
