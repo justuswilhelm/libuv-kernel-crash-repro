@@ -9,9 +9,10 @@
   environment.etc."crash/package.json".source = ./package.json;
   environment.etc."crash/package-lock.json".source = ./package-lock.json;
 
-  programs.npm.enable = true;
-  environment.systemPackages = [ pkgs.nodejs_20 ];
-  programs.tmux.enable = true;
+  environment.systemPackages = [
+    pkgs.tmux
+    pkgs.nodejs_22
+  ];
   programs.bash.loginShellInit = ''
     cp -nv /etc/crash/* $HOME
     if [ "$(tty)" = "/dev/tty1" ]; then
