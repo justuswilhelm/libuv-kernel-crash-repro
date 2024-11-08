@@ -1,0 +1,101 @@
+933   io_uring_setup(64, {flags=IORING_SETUP_SQPOLL, sq_thread_cpu=0, sq_thread_idle=10, sq_entries=64, cq_entries=128, features=IORING_FEAT_SINGLE_MMAP|IORING_FEAT_NODROP|IORING_FEAT_SUBMIT_STABLE|IORING_FEAT_RW_CUR_POS|IORING_FEAT_CUR_PERSONALITY|IORING_FEAT_FAST_POLL|IORING_FEAT_POLL_32BITS|IORING_FEAT_SQPOLL_NONFIXED|IORING_FEAT_EXT_ARG|IORING_FEAT_NATIVE_WORKERS|IORING_FEAT_RSRC_TAGS|IORING_FEAT_CQE_SKIP|IORING_FEAT_LINKED_FILE|IORING_FEAT_REG_REG_RING, sq_off={head=0, tail=4, ring_mask=16, ring_entries=24, flags=36, dropped=32, array=2112, user_addr=0}, cq_off={head=8, tail=12, ring_mask=20, ring_entries=28, overflow=44, cqes=64, flags=40, user_addr=0}}) = 4
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(syscall+0x1d) [0x107d1d]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__iou_init+0xf0) [0x231b0]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__platform_loop_init+0x5f) [0x235af]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv_loop_init+0x22b) [0x18a3b]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node7tracing5AgentC1Ev+0x190) [0xff6e30]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4nodeL32InitializeOncePerProcessInternalERKSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS6_EENS_26ProcessInitializationFlags5FlagsE+0xf5c) [0xe1eecc]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node5StartEiPPc+0x14b) [0xe22a4b]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_call_main+0x7d) [0x2a10d]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_main@@GLIBC_2.34+0x88) [0x2a1c8]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_start+0x24) [0xd5bd94]
+933   io_uring_setup(256, {flags=0, sq_thread_cpu=0, sq_thread_idle=0, sq_entries=256, cq_entries=512, features=IORING_FEAT_SINGLE_MMAP|IORING_FEAT_NODROP|IORING_FEAT_SUBMIT_STABLE|IORING_FEAT_RW_CUR_POS|IORING_FEAT_CUR_PERSONALITY|IORING_FEAT_FAST_POLL|IORING_FEAT_POLL_32BITS|IORING_FEAT_SQPOLL_NONFIXED|IORING_FEAT_EXT_ARG|IORING_FEAT_NATIVE_WORKERS|IORING_FEAT_RSRC_TAGS|IORING_FEAT_CQE_SKIP|IORING_FEAT_LINKED_FILE|IORING_FEAT_REG_REG_RING, sq_off={head=0, tail=4, ring_mask=16, ring_entries=24, flags=36, dropped=32, array=8256, user_addr=0}, cq_off={head=8, tail=12, ring_mask=20, ring_entries=28, overflow=44, cqes=64, flags=40, user_addr=0}}) = 5
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(syscall+0x1d) [0x107d1d]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__iou_init+0xf0) [0x231b0]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__platform_loop_init+0x75) [0x235c5]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv_loop_init+0x22b) [0x18a3b]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node7tracing5AgentC1Ev+0x190) [0xff6e30]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4nodeL32InitializeOncePerProcessInternalERKSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS6_EENS_26ProcessInitializationFlags5FlagsE+0xf5c) [0xe1eecc]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node5StartEiPPc+0x14b) [0xe22a4b]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_call_main+0x7d) [0x2a10d]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_main@@GLIBC_2.34+0x88) [0x2a1c8]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_start+0x24) [0xd5bd94]
+940   io_uring_setup(64, {flags=IORING_SETUP_SQPOLL, sq_thread_cpu=0, sq_thread_idle=10, sq_entries=64, cq_entries=128, features=IORING_FEAT_SINGLE_MMAP|IORING_FEAT_NODROP|IORING_FEAT_SUBMIT_STABLE|IORING_FEAT_RW_CUR_POS|IORING_FEAT_CUR_PERSONALITY|IORING_FEAT_FAST_POLL|IORING_FEAT_POLL_32BITS|IORING_FEAT_SQPOLL_NONFIXED|IORING_FEAT_EXT_ARG|IORING_FEAT_NATIVE_WORKERS|IORING_FEAT_RSRC_TAGS|IORING_FEAT_CQE_SKIP|IORING_FEAT_LINKED_FILE|IORING_FEAT_REG_REG_RING, sq_off={head=0, tail=4, ring_mask=16, ring_entries=24, flags=36, dropped=32, array=2112, user_addr=0}, cq_off={head=8, tail=12, ring_mask=20, ring_entries=28, overflow=44, cqes=64, flags=40, user_addr=0}}) = 12
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(syscall+0x1d) [0x107d1d]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__iou_init+0xf0) [0x231b0]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__platform_loop_init+0x5f) [0x235af]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv_loop_init+0x22b) [0x18a3b]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZZN4node23WorkerThreadsTaskRunner20DelayedTaskScheduler5StartEvENUlPvE_4_FUNES2_+0x56) [0xf0f236]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(start_thread+0x351) [0x8e271]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__clone3+0x2b) [0x109deb]
+940   io_uring_setup(256, {flags=0, sq_thread_cpu=0, sq_thread_idle=0, sq_entries=256, cq_entries=512, features=IORING_FEAT_SINGLE_MMAP|IORING_FEAT_NODROP|IORING_FEAT_SUBMIT_STABLE|IORING_FEAT_RW_CUR_POS|IORING_FEAT_CUR_PERSONALITY|IORING_FEAT_FAST_POLL|IORING_FEAT_POLL_32BITS|IORING_FEAT_SQPOLL_NONFIXED|IORING_FEAT_EXT_ARG|IORING_FEAT_NATIVE_WORKERS|IORING_FEAT_RSRC_TAGS|IORING_FEAT_CQE_SKIP|IORING_FEAT_LINKED_FILE|IORING_FEAT_REG_REG_RING, sq_off={head=0, tail=4, ring_mask=16, ring_entries=24, flags=36, dropped=32, array=8256, user_addr=0}, cq_off={head=8, tail=12, ring_mask=20, ring_entries=28, overflow=44, cqes=64, flags=40, user_addr=0}}) = 13
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(syscall+0x1d) [0x107d1d]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__iou_init+0xf0) [0x231b0]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__platform_loop_init+0x75) [0x235c5]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv_loop_init+0x22b) [0x18a3b]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZZN4node23WorkerThreadsTaskRunner20DelayedTaskScheduler5StartEvENUlPvE_4_FUNES2_+0x56) [0xf0f236]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(start_thread+0x351) [0x8e271]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__clone3+0x2b) [0x109deb]
+933   io_uring_setup(64, {flags=IORING_SETUP_SQPOLL, sq_thread_cpu=0, sq_thread_idle=10, sq_entries=64, cq_entries=128, features=IORING_FEAT_SINGLE_MMAP|IORING_FEAT_NODROP|IORING_FEAT_SUBMIT_STABLE|IORING_FEAT_RW_CUR_POS|IORING_FEAT_CUR_PERSONALITY|IORING_FEAT_FAST_POLL|IORING_FEAT_POLL_32BITS|IORING_FEAT_SQPOLL_NONFIXED|IORING_FEAT_EXT_ARG|IORING_FEAT_NATIVE_WORKERS|IORING_FEAT_RSRC_TAGS|IORING_FEAT_CQE_SKIP|IORING_FEAT_LINKED_FILE|IORING_FEAT_REG_REG_RING, sq_off={head=0, tail=4, ring_mask=16, ring_entries=24, flags=36, dropped=32, array=2112, user_addr=0}, cq_off={head=8, tail=12, ring_mask=20, ring_entries=28, overflow=44, cqes=64, flags=40, user_addr=0}}) = 18
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(syscall+0x1d) [0x107d1d]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__iou_init+0xf0) [0x231b0]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__platform_loop_init+0x5f) [0x235af]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv_loop_init+0x22b) [0x18a3b]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv_default_loop+0x2e) [0x1041e]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node5StartEiPPc+0x26b) [0xe22b6b]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_call_main+0x7d) [0x2a10d]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_main@@GLIBC_2.34+0x88) [0x2a1c8]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_start+0x24) [0xd5bd94]
+933   io_uring_setup(256, {flags=0, sq_thread_cpu=0, sq_thread_idle=0, sq_entries=256, cq_entries=512, features=IORING_FEAT_SINGLE_MMAP|IORING_FEAT_NODROP|IORING_FEAT_SUBMIT_STABLE|IORING_FEAT_RW_CUR_POS|IORING_FEAT_CUR_PERSONALITY|IORING_FEAT_FAST_POLL|IORING_FEAT_POLL_32BITS|IORING_FEAT_SQPOLL_NONFIXED|IORING_FEAT_EXT_ARG|IORING_FEAT_NATIVE_WORKERS|IORING_FEAT_RSRC_TAGS|IORING_FEAT_CQE_SKIP|IORING_FEAT_LINKED_FILE|IORING_FEAT_REG_REG_RING, sq_off={head=0, tail=4, ring_mask=16, ring_entries=24, flags=36, dropped=32, array=8256, user_addr=0}, cq_off={head=8, tail=12, ring_mask=20, ring_entries=28, overflow=44, cqes=64, flags=40, user_addr=0}}) = 19
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(syscall+0x1d) [0x107d1d]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__iou_init+0xf0) [0x231b0]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__platform_loop_init+0x75) [0x235c5]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv_loop_init+0x22b) [0x18a3b]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv_default_loop+0x2e) [0x1041e]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node5StartEiPPc+0x26b) [0xe22b6b]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_call_main+0x7d) [0x2a10d]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_main@@GLIBC_2.34+0x88) [0x2a1c8]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_start+0x24) [0xd5bd94]
+933   --- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(epoll_pwait+0x76) [0x10a086]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__io_poll+0x1ff) [0x2413f]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv_run+0xaf) [0x1190f]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node21SpinEventLoopInternalEPNS_11EnvironmentE+0x1aa) [0xd5dfda]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node16NodeMainInstance3RunEPNS_8ExitCodeEPNS_11EnvironmentE+0x17a) [0xecf51a]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node16NodeMainInstance3RunEv+0x99) [0xecf8f9]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node5StartEiPPc+0x47b) [0xe22d7b]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_call_main+0x7d) [0x2a10d]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_main@@GLIBC_2.34+0x88) [0x2a1c8]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_start+0x24) [0xd5bd94]
+933   --- SIGINT {si_signo=SIGINT, si_code=SI_KERNEL} ---
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(epoll_pwait+0x76) [0x10a086]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__io_poll+0x1ff) [0x2413f]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv_run+0xaf) [0x1190f]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node21SpinEventLoopInternalEPNS_11EnvironmentE+0x1aa) [0xd5dfda]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node16NodeMainInstance3RunEPNS_8ExitCodeEPNS_11EnvironmentE+0x17a) [0xecf51a]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node16NodeMainInstance3RunEv+0x99) [0xecf8f9]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node5StartEiPPc+0x47b) [0xe22d7b]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_call_main+0x7d) [0x2a10d]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_main@@GLIBC_2.34+0x88) [0x2a1c8]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_start+0x24) [0xd5bd94]
+933   --- SIGINT {si_signo=SIGINT, si_code=SI_KERNEL} ---
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(epoll_pwait+0x76) [0x10a086]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv__io_poll+0x1ff) [0x2413f]
+ > /nix/store/arhy8i96l81wz3zrldiwcmiax2gc2w7s-libuv-1.48.0/lib/libuv.so.1.0.0(uv_run+0xaf) [0x1190f]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node21SpinEventLoopInternalEPNS_11EnvironmentE+0x1aa) [0xd5dfda]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node16NodeMainInstance3RunEPNS_8ExitCodeEPNS_11EnvironmentE+0x17a) [0xecf51a]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node16NodeMainInstance3RunEv+0x99) [0xecf8f9]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_ZN4node5StartEiPPc+0x47b) [0xe22d7b]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_call_main+0x7d) [0x2a10d]
+ > /nix/store/c10zhkbp6jmyh0xc5kd123ga8yy2p4hk-glibc-2.39-52/lib/libc.so.6(__libc_start_main@@GLIBC_2.34+0x88) [0x2a1c8]
+ > /nix/store/2zihfr3bw3pbhlkkfdd3nba24spww6ai-nodejs-22.4.1/bin/node(_start+0x24) [0xd5bd94]
+947   +++ killed by SIGINT +++
+958   +++ killed by SIGINT +++
+957   +++ killed by SIGINT +++
+956   +++ killed by SIGINT +++
+955   +++ killed by SIGINT +++
+945   +++ killed by SIGINT +++
+944   +++ killed by SIGINT +++
+943   +++ killed by SIGINT +++
+942   +++ killed by SIGINT +++
+940   +++ killed by SIGINT +++

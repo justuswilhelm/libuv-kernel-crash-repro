@@ -201,6 +201,29 @@ find node_modules | wc
 And seeing a different number of files between each run. This implies that the
 `npm ci` crashes at different times in a non-deterministic way.
 
+## Tracing system calls
+
+This will trace all calls made to kernel function `io_uring_setup` and
+include a backtrace:
+
+```bash
+strace -e io_uring_setup -f -k --output strace_io_uring_setup.log node $(which npm) ci
+```
+
+The contents are in `strace_io_uring_setup.log`.
+
+sq and cq sizes:
+
+```
+# sed -E -n -e 's/^.+(sq_entries=[0-9]+, cq_entries=[0-9]+).+$/\1/p' strace_io_uring_setup.log
+sq_entries=64, cq_entries=128
+sq_entries=256, cq_entries=512
+sq_entries=64, cq_entries=128
+sq_entries=256, cq_entries=512
+sq_entries=64, cq_entries=128
+sq_entries=256, cq_entries=512
+```
+
 ## Copy files
 
 You can copy files between host and guest using `nc`. It's a bit hacky but
