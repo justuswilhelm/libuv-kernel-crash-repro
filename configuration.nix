@@ -79,6 +79,7 @@ in
     cp /etc/crash/* $HOME
     if [ "$(tty)" = "/dev/tty1" ] || [ "$(tty)" = "/dev/ttyS0" ]; then
       fix-stty-size
+      tmux
     fi
   '';
   users.motd = ''
