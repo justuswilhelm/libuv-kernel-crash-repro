@@ -50,6 +50,21 @@ __Important__: You can exit the serial console by pressing `Ctrl-a + c` and
 then typing `quit` and pressing the `Enter/Return` key. If your terminal is
 messed up after the QEMU serial console session, run `reset`. You can
 
+## Ways problem can be reproduced
+
+Either
+
+- npm ci, or
+- node /etc/crash/cash.mjs
+
+will do. For the second, you can run the command `crash` in the terminal.
+
+Crash will crash with semi-high likelihood:
+
+![Crash command crashing](./crash-cmd.png)
+
+## Reproduction steps
+
 1. Start QEMU VM using the following command:
 
 ```bash

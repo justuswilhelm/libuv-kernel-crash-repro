@@ -29,6 +29,12 @@ let
       export TERM=xterm-256color
     '';
   };
+  crash = pkgs.writeShellApplication {
+    name = "crash";
+    text = ''
+      node /etc/crash/crash.mjs
+    '';
+  };
   reproducer = pkgs.writeShellApplication {
     name = "reproducer";
     text = ''
@@ -57,12 +63,14 @@ in
   virtualisation.diskImage = null;
   environment.etc."crash/package.json".source = ./package.json;
   environment.etc."crash/package-lock.json".source = ./package-lock.json;
+  environment.etc."crash/crash.mjs".source = ./crash.mjs;
 
   environment.systemPackages = [
     # Environment
     pkgs.tmux
     fix-stty-size
     reproducer
+    crash
 
     # Also crashes with pkgs.nodejs_20
     pkgs.nodejs_22
@@ -77,8 +85,10 @@ in
   ];
   programs.bash.loginShellInit = ''
     cp /etc/crash/* $HOME
-    if [ "$(tty)" = "/dev/tty1" ] || [ "$(tty)" = "/dev/ttyS0" ]; then
+    if [ "$(tty)" = "/dev/ttyS0" ]; then
       fix-stty-size
+    fi
+    if [ "$(tty)" = "/dev/tty1" ] || [ "$(tty)" = "/dev/ttyS0" ]; then
       tmux
     fi
   '';
